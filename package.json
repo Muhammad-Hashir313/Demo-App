@@ -1,0 +1,27 @@
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "description": "Learning jenkins multibranch pipeline and dockers",
+  "homepage": "https://github.com/Muhammad-Hashir313/Demo-App#readme",
+  "bugs": {
+    "url": "https://github.com/Muhammad-Hashir313/Demo-App/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhammad-Hashir313/Demo-App.git"
+  },
+  "license": "ISC",
+  "author": "Muhammad Hashir",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "server": "nodemon ./index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
