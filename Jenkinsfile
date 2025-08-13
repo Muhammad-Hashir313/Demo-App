@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("dependency-install") {
+        stage("dependency-install-dev") {
             when {
                 branch 'develop'
             }
@@ -9,7 +9,7 @@ pipeline {
                 echo "Installing dependencies for develop"
             }
         }
-        stage("dependency-install") {
+        stage("dependency-install-prod") {
             when {
                 branch 'production'
             }
