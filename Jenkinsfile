@@ -8,7 +8,7 @@ pipeline {
 
 stage("dependency-install-prod") {
     when { expression { env.BRANCH_NAME == 'production' } }
-    steps { echo "Installing dependencies for production" }
+    steps { echo "Production is working it means." }
 }
     }
 }
