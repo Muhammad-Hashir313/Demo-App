@@ -2,13 +2,19 @@ pipeline {
     agent any
     stages {
         stage("dependency-install") {
+            when {
+                branch 'develop'
+            }
             steps {
-                echo "Installing dependencies"
+                echo "Installing dependencies for develop"
             }
         }
-        stage("build") {
+        stage("dependency-install") {
+            when {
+                branch 'production'
+            }
             steps {
-                echo "Building Application"
+                echo "Installing dependencies for production"
             }
         }
     }
