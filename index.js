@@ -5,7 +5,7 @@ const PORT = 3000
 const app = express()
 
 app.get('/', (req, res) => {
-    res.json({ message: "Get Request message" })
+    res.json({ message: "Checking for develop pipeline" })
 })
 
 app.listen(PORT, () => console.log("App started on localhost:", PORT))
