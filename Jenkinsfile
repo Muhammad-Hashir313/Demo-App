@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo "Installing dependencies for production"
                 sh "npm install"
-                sh "npm run build"
+                sh "npm run server"
             }
         }
     }
