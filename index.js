@@ -8,4 +8,4 @@ app.get('/', (req, res) => {
     res.json({ message: "I guess that worked" })
 })
 
-app.listen(PORT, () => console.log("App started on localhost:", PORT))
+app.listen(PORT, '0.0.0.0', () => console.log("App started on localhost:", PORT))
