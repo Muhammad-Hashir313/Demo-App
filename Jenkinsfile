@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        dockerContainer {
-            image 'node:20'
-        }
-    }
+    agent any
     stages {
         stage("dependency-install-dev") {
             when { 
@@ -26,7 +22,7 @@ pipeline {
             steps {
                 echo "Installing dependencies for production"
                 sh "npm install"
-                sh "npm build"
+                sh "npm run build"
             }
         }
     }
