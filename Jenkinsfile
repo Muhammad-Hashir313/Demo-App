@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        docker { image 'node:20' }
+        dockerContainer {
+            image 'node:20'
+        }
     }
     stages {
         stage("dependency-install-dev") {
