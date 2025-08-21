@@ -8,8 +8,8 @@ pipeline {
         stage("Build Image"){
             steps {
                 script {
-                    sh "echo Listing containers"
-                    sh "docker ps"
+                    // sh "echo Listing containers"
+                    // sh "docker ps"
                     sh "docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME} ."
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
                 script {
                     sh "echo Listing containers"
                     sh "docker ps"
-                    sh "docker compose up --detach"
+                    sh "docker compose up -d"
                 }
             }
         }
