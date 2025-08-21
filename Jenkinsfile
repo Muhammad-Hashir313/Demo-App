@@ -21,8 +21,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_REGISTRY --password-stdin"
-                    sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME}"
+                    sh "echo Running production branch"
+                    sh "docker-compose up --build -d"
                 }
             }
         }
@@ -35,7 +35,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh "docker-compose up -d --build"
+                    sh "echo Running develop branch"
+                    sh "docker-compose up -d"
                 }
             }
         }
