@@ -1,6 +1,8 @@
 pipeline {
     agent any
     environment {
+        DOCKER_REGISTRY = "hashir313"
+        IMAGE_NAME = "node-app"
         PORT = credentials('PORT')
     }
     stages {
