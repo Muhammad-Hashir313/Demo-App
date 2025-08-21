@@ -3,11 +3,14 @@ pipeline {
     environment {
         DOCKER_REGISTRY = "hashir313"
         IMAGE_NAME = "node-app"
+        PORT = credentials('PORT')
     }
     stages {
         stage("Build Image"){
             steps {
                 script {
+                    // sh "echo Listing containers"
+                    // sh "docker ps"
                     sh "docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME} ."
                 }
             }
@@ -21,8 +24,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_REGISTRY --password-stdin"
-                    sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME}"
+                    sh "echo Running production branch"
+                    sh "docker-compose up --build -d"
                 }
             }
         }
@@ -35,7 +38,9 @@ pipeline {
             }
             steps {
                 script {
-                    sh "docker-compose up -d --build"
+                    sh "echo Listing containers"
+                    sh "docker ps"
+                    sh "docker compose up -d"
                 }
             }
         }
