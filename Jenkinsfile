@@ -16,6 +16,16 @@ pipeline {
             }
         }
 
+        stage("Run Tests") {
+            steps {
+                script {
+                    echo "Running tests inside container"
+                    sh "docker compose run --rm app npm test"
+                }
+            }
+        }
+
+
         stage("Push Image"){
             when {
                 expression {
