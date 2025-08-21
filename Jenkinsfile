@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh "echo Running production branch"
-                    sh "docker-compose up --build -d"
+                    sh "docker compose up --build -d"
                 }
             }
         }
