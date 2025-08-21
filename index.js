@@ -6,7 +6,7 @@ const PORT = process.env.PORT
 const app = express()
 
 app.get('/', (req, res) => {
-    res.json({ message: "I guess that worked" })
+    res.json({ message: "Develop is running" })
 })
 
 app.listen(PORT, '0.0.0.0', () => console.log("App started on localhost:", PORT))
