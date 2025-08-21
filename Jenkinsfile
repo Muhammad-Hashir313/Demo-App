@@ -16,6 +16,16 @@ pipeline {
             }
         }
 
+        stage("Run Tests") {
+            steps {
+                script {
+                    echo "Running tests inside container"
+                    sh "docker run --rm -e PORT=$PORT $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME} npm test"
+                }
+            }
+        }
+
+
         stage("Push Image"){
             when {
                 expression {
