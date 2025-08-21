@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     echo "Running tests inside container"
-                    sh "docker compose run --rm app npm test"
+                    sh "docker run --rm -e PORT=$PORT $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME} npm test"
                 }
             }
         }
