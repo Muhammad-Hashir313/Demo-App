@@ -35,7 +35,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh "echo Running develop branch"
+                    sh "echo Listing containers"
+                    sh "docker ps"
                     sh "docker compose up --detach"
                 }
             }
