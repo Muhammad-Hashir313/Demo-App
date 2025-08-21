@@ -1,28 +1,42 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_REGISTRY = "hashir313"
+        IMAGE_NAME = "node-app"
+    }
     stages {
-        stage("dependency-install-dev") {
-            when { 
-                expression { 
-                    env.BRANCH_NAME == 'develop'
-                }
-            }
+        stage("Build Image"){
             steps {
-                echo "Installing dependencies for develop"
-                sh "npm install"
+                script {
+                    sh "docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME} ."
+                }
             }
         }
 
-        stage("dependency-install-prod") {
-            when { 
+        stage("Push Image"){
+            when {
                 expression {
                     env.BRANCH_NAME == 'production'
                 }
             }
             steps {
-                echo "Installing dependencies for production"
-                sh "npm install"
-                sh "npm run server"
+                script {
+                    sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_REGISTRY --password-stdin"
+                    sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:${env.BRANCH_NAME}"
+                }
+            }
+        }
+
+        stage("Run Dev Container") {
+            when {
+                expression {
+                    env.BRANCH_NAME == 'develop'
+                }
+            }
+            steps {
+                script {
+                    sh "docker-compose up -d --build"
+                }
             }
         }
     }
